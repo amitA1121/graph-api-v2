@@ -2,6 +2,8 @@ import { db } from '../db/database'
 import { Node } from '../models/node_model';
 import {NODE_ID_TYPE} from '../utils/graph_typs'
 import { NODE_TABLE_NAME } from "../db/db_configs"
+
+
 export const getAllNodes = async (): Promise<Node[]> => {
     return db<Node>('nodes').select('*')
 }

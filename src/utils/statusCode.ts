@@ -1,5 +1,8 @@
-export const NO_CONTENT = 204
-export const OK = 200
-export const NOT_FOUND = 404
-export const CREATE = 201
-export const BAD_REQUAST = 400
+export enum statusCode {
+    NO_CONTENT = 204,
+    OK = 200,
+    NOT_FOUND = 404,
+    CREATE = 201,
+    BAD_REQUEST = 400,
+    CONFLICT = 409
+}

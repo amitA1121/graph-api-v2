@@ -10,7 +10,7 @@ const orderEdgeBySize = (a: NODE_ID_TYPE, b: NODE_ID_TYPE) => ({
     node_b_id: Math.max(a,b),
 })
 
-export const getAllEdge = async (): Promise<Edge[]> => {
+export const getAllEdges = async (): Promise<Edge[]> => {
     return await db<Edge>(EDGE_TABLE_NAME).select('*')
 }
 

@@ -1,6 +1,7 @@
 import { Knex } from 'knex';
 import { NODE_TABLE_NAME, EDGE_TABLE_NAME, COLUMN_NAMES_a, COLUMN_NAMES_b} from "../db_configs";
 
+
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(NODE_TABLE_NAME, (table) => {
     table.increments("id").primary();

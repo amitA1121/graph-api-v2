@@ -11,7 +11,6 @@ export const getDegrees = async () => {
 }
 
 export const getAllConnectedComponents = async () => {
-
     const adjacencyList = await buildAdjacencyList()
     const components: number[][] = []
     const visitedNodes = new Set<number>()
@@ -24,16 +23,16 @@ export const getAllConnectedComponents = async () => {
                 dfsExplore(neighbor, component)
             }
         }
-        return components
     }
 
-    for(const node_id of adjacencyList.keys() ) {
+    for(const node_id of adjacencyList.keys()) {
         if(!visitedNodes.has(node_id)) {
             const component: number[] = []
             dfsExplore(node_id, component)
             components.push(component)
         }
     }
+    return components
 }
 //-----------------------------------------------------------------------------------
 // change the type of node to "number" to globalic variable like "Node_type: number"
