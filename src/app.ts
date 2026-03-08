@@ -4,7 +4,6 @@ import router from './routes/index'
 import Koa from 'koa'
 
 const app = new Koa()
-
 app.use(errorHandler)
 app.use(bodyParser())
 app.use(router.routes())

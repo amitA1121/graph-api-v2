@@ -25,9 +25,9 @@ export const getAllEdges = async (ctx: Context) => {
 }
 
 export const deleteEdge = async (ctx: Context) => {
-    const a = Number(ctx.params.a)
-    const b = Number(ctx.params.b)
-    await graphServies.deleteEdge(a, b)
+    const a_id = Number(ctx.params.a_id)
+    const b_id = Number(ctx.params.b_id)
+    ctx.body = await graphServies.deleteEdge(a_id, b_id)
     ctx.status = statusCode.NO_CONTENT
 }
 
