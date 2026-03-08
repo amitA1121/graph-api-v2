@@ -17,9 +17,7 @@ export const deleteNode = async (id: NODE_ID_TYPE) => {
     if(!isNodeExist) throw new AppError('node not found',statusCode.NOT_FOUND)
     return nodeRepo.deleteNode(id)
 }
-//-----------------------------------------------------------------------------------
-// change the type of node to "NODE_ID_TYPE" to globalic variable like "Node_type: NODE_ID_TYPE"
-//-----------------------------------------------------------------------------------
+
 export const createEdge = async (node_a_id : NODE_ID_TYPE, node_b_id: NODE_ID_TYPE) => {
     if(node_a_id === node_b_id)
         throw new AppError('edges cant be same',statusCode.BAD_REQUEST)
