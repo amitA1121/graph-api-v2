@@ -44,17 +44,17 @@ export const createEdge = async (ctx: Context) => {
       ctx.body = { error: err }
     },
     Right: async (data) => {
-      const aId = Number(data.node_a_id)
-      const bId = Number(data.node_b_id)
+      const node_a_id = Number(data.node_a_id)
+      const node_b_id = Number(data.node_b_id)
 
-      if (Number.isNaN(aId) || Number.isNaN(bId)) {
+      if (Number.isNaN(node_a_id) || Number.isNaN(node_b_id)) {
         ctx.status = statusCode.BAD_REQUEST
         ctx.body = { error: errMsg }
         return
       }
 
       ctx.status = statusCode.CREATE
-      ctx.body = await graphServies.createEdge(aId, bId)
+      ctx.body = await graphServies.createEdge(node_a_id, node_b_id)
     }
   })
 }
@@ -68,16 +68,16 @@ export const deleteEdge = async (ctx: Context) => {
       ctx.body = { error: err }
     },
     Right: async (data) => {
-      const aId = Number(data.node_a_id)
-      const bId = Number(data.node_b_id)
+      const node_a_id = Number(data.node_a_id)
+      const node_b_id = Number(data.node_b_id)
 
-      if (Number.isNaN(aId) || Number.isNaN(bId)) {
+      if (Number.isNaN(node_a_id) || Number.isNaN(node_b_id)) {
         ctx.status = statusCode.BAD_REQUEST
         ctx.body = { error: errMsg }
         return
       }
 
-      await graphServies.deleteEdge(aId, bId)
+      await graphServies.deleteEdge(node_a_id, node_b_id)
       ctx.status = statusCode.NO_CONTENT
     }
   })
