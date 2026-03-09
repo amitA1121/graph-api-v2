@@ -1,18 +1,21 @@
 import { Context } from "koa";
-import * as dfs_serviec from '../services/dfs_service'
+import * as dfs_service from '../services/dfs_service'
 import { PathParamsCodec } from '../models/dfs_model'
 import { statusCode } from "../utils/statusCode";
 
 export const getAllConnectedComponents = async (ctx: Context) => {
-    ctx.body = await dfs_serviec.getAllConnectedComponents()
+    ctx.status = statusCode.OK
+    ctx.body = await dfs_service.getAllConnectedComponents()
 }
 
 export const hasCycle = async (ctx: Context) => {
-    ctx.body = await dfs_serviec.hasCycle()
+    ctx.status = statusCode.OK
+    ctx.body = await dfs_service.hasCycle()
 }
 
 export const getDegrees = async (ctx: Context) => {
-    ctx.body = await dfs_serviec.getDegrees()
+    ctx.status = statusCode.OK
+    ctx.body = await dfs_service.getDegrees()
 }
 
 export const getAllPathsFromTwoNodes = async (ctx: Context) => {
@@ -24,7 +27,7 @@ export const getAllPathsFromTwoNodes = async (ctx: Context) => {
         },
         Right: async(data) => {
             ctx.status = statusCode.OK
-            ctx.body = await dfs_serviec.getAllPathsFromTwoNodes(data.start, data.end)
+            ctx.body = await dfs_service.getAllPathsFromTwoNodes(data.start, data.end)
         }
     })
 }

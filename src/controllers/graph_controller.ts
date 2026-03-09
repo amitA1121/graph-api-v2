@@ -14,7 +14,7 @@ export const createNode = async (ctx: Context) => {
     ctx.status = statusCode.CREATE
 }
 
-export const deleteNoded = async (ctx: Context) => {
+export const deleteNode = async (ctx: Context) => {
     const result = NodeParamsCodec.decode(ctx.params)
     result.caseOf({
         Left: (err) => {
