@@ -9,8 +9,8 @@ router.post('/nodes', graph_controller.createNode)
 router.delete('/nodes/:id', graph_controller.deleteNode)
 
 router.get('/edges', graph_controller.getAllEdges)
-router.post('/edges/:a_id/:b_id', graph_controller.createEdge)
-router.delete('/edges/:a_id/:b_id', graph_controller.deleteEdge)
+router.post('/edges/:node_a_id/:node_b_id', graph_controller.createEdge)
+router.delete('/edges/:node_a_id/:node_b_id', graph_controller.deleteEdge)
 
 router.get('/components', dfs_controller.getAllConnectedComponents)
 router.get('/cycle', dfs_controller.hasCycle)

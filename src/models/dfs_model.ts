@@ -1,8 +1,6 @@
-import {Codec, number, GetType} from 'purify-ts'
+import {Codec, string, GetType} from 'purify-ts'
 
 export const PathParamsCodec = Codec.interface({
-    start : number,
-    end : number,
+    start : string,
+    end : string,
  })
-
-export type EdgeParams = GetType<typeof PathParamsCodec>

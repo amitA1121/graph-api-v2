@@ -34,18 +34,16 @@ export const getAllConnectedComponents = async () => {
     }
     return components
 }
-//-----------------------------------------------------------------------------------
-// change the type of node to "number" to globalic variable like "Node_type: number"
-//-----------------------------------------------------------------------------------
+
 export const getAllPathsFromTwoNodes = async (start_node: number, end_node: number ) => {
     const adjacencyList = await buildAdjacencyList()
-    const allPath: number[][] = []
+    const allPaths: number[][] = []
     const path: number[] = [start_node]
     const visitedNodes = new Set<number>([start_node])
 
     const dfs = (current_node: number) => {
         if(current_node === end_node) {
-            allPath.push([...path])
+            allPaths.push([...path])
             return
         }
 
@@ -62,7 +60,7 @@ export const getAllPathsFromTwoNodes = async (start_node: number, end_node: numb
         }       
     }
     dfs(start_node)
-    return allPath
+    return allPaths
 }
 
 export const hasCycle = async (): Promise<boolean> => {
@@ -82,9 +80,9 @@ export const hasCycle = async (): Promise<boolean> => {
         return false
     }
 
-    for (const nodeId of adjacencyList.keys()) {
-        if (!visited.has(nodeId)) {
-            if (dfs(nodeId, -1)) return true
+    for (const node_id of adjacencyList.keys()) {
+        if (!visited.has(node_id)) {
+            if (dfs(node_id, -1)) return true
         }
     }
     return false

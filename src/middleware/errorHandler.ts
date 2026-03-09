@@ -1,5 +1,5 @@
 import { Context, Next } from 'koa'
-
+import { statusCode } from '../utils/statusCode'
 export class AppError extends Error {
     statusCode: number
     
@@ -18,7 +18,7 @@ export const errorHandler = async (ctx: Context, next: Next) => {
             ctx.status = err.statusCode
             ctx.body = { success: false, error: err.message }
             } else {
-            ctx.status = 500
+            ctx.status = statusCode.INTERNAL_SERVER_ERROR
             ctx.body = { success: false, error: 'server error' }
         }
     }

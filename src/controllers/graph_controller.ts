@@ -1,8 +1,10 @@
-import { Context } from "koa";
+import { Context } from 'koa'
 import * as graphServies from '../services/graph_service'
 import { statusCode } from '../utils/statusCode'
 import { EdgeParamsCodec } from '../models/edge_model'
 import { NodeParamsCodec } from '../models/node_model'
+
+const errMsg = 'node_a_id and node_b_id must be type of number'
 
 //--------nodes----------//
 export const getAllNodes = async (ctx: Context) => {
@@ -34,29 +36,49 @@ export const getAllEdges = async (ctx: Context) => {
 }
 
 export const createEdge = async (ctx: Context) => {
-    const result = EdgeParamsCodec.decode(ctx.params)
-    result.caseOf({
-        Left: (err) => {
-            ctx.status = statusCode.BAD_REQUEST
-            ctx.body = { error: err }
-        },
-        Right: async (data) => {
-            ctx.status = statusCode.CREATE
-            ctx.body = await graphServies.createEdge(data.node_a_id, data.node_b_id)
-        }
-    })
+  const result = EdgeParamsCodec.decode(ctx.params)
+
+  return result.caseOf({
+    Left: (err) => {
+      ctx.status = statusCode.BAD_REQUEST
+      ctx.body = { error: err }
+    },
+    Right: async (data) => {
+      const aId = Number(data.node_a_id)
+      const bId = Number(data.node_b_id)
+
+      if (Number.isNaN(aId) || Number.isNaN(bId)) {
+        ctx.status = statusCode.BAD_REQUEST
+        ctx.body = { error: errMsg }
+        return
+      }
+
+      ctx.status = statusCode.CREATE
+      ctx.body = await graphServies.createEdge(aId, bId)
+    }
+  })
 }
 
 export const deleteEdge = async (ctx: Context) => {
-    const result = EdgeParamsCodec.decode(ctx.params)
-    result.caseOf({
-        Left: (err) => {
-            ctx.status = statusCode.BAD_REQUEST
-            ctx.body = { error: err }
-        },
-        Right: async (data) => {
-            ctx.body = await graphServies.deleteEdge(data.node_a_id, data.node_b_id)
-            ctx.status = statusCode.NO_CONTENT
-        }
-    })
+  const result = EdgeParamsCodec.decode(ctx.params)
+
+  return result.caseOf({
+    Left: (err) => {
+      ctx.status = statusCode.BAD_REQUEST
+      ctx.body = { error: err }
+    },
+    Right: async (data) => {
+      const aId = Number(data.node_a_id)
+      const bId = Number(data.node_b_id)
+
+      if (Number.isNaN(aId) || Number.isNaN(bId)) {
+        ctx.status = statusCode.BAD_REQUEST
+        ctx.body = { error: errMsg }
+        return
+      }
+
+      await graphServies.deleteEdge(aId, bId)
+      ctx.status = statusCode.NO_CONTENT
+    }
+  })
 }

@@ -3,14 +3,15 @@ import bodyParser from 'koa-bodyparser'
 import router from './routes/index'
 import Koa from 'koa'
 
+const PORT = 3000
+
 const app = new Koa()
+
 app.use(errorHandler)
 app.use(bodyParser())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-app.listen(3000, () => {
-    console.log('server running on port 3000')
+app.listen(PORT, () => {
+    console.log(`server running on port ${PORT}`)
 })
-
-export default app

@@ -20,8 +20,8 @@ export const checkEdgeBetweenTwoNodes = async (a: NODE_ID_TYPE, b: NODE_ID_TYPE)
 }
 
 export const createEdge = async (a: NODE_ID_TYPE, b: NODE_ID_TYPE): Promise<Edge> => {
-    const ordersNODEs = orderEdgeBySize(a, b)
-    const [newEdge] = await db<Edge>(EDGE_TABLE_NAME).insert(ordersNODEs).returning('*')
+    const orderedNodes = orderEdgeBySize(a, b)
+    const [newEdge] = await db<Edge>(EDGE_TABLE_NAME).insert(orderedNodes).returning('*')
     return newEdge
 }
 
