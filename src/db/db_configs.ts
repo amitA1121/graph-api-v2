@@ -1,4 +1,11 @@
-export const NODE_TABLE_NAME = 'nodes';
-export const EDGE_TABLE_NAME = 'edges';
-export const COLUMN_NAMES_a = 'node_a_id';
-export const COLUMN_NAMES_b = 'node_b_id';
+export const DBConstants = {
+    TABLES: {
+        NODES: 'nodes',
+        EDGES: 'edges'
+    },
+
+    COLUMNS: {
+        SOURCE_NODE_ID: 'source_node_id',
+        TARGET_NODE_ID: 'target_node_id'
+    }
+}

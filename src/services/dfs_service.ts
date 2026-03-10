@@ -1,5 +1,4 @@
-import { buildAdjacencyList } from '../services/graph_service'
-
+import { buildAdjacencyList } from './edge_service'
 
 export const getDegrees = async () => {
     const adjacencyList = await buildAdjacencyList()

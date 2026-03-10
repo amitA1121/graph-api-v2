@@ -1,8 +1,8 @@
-import {Codec, string, GetType} from 'purify-ts'
+import {Codec, string} from 'purify-ts'
 
 export interface Edge {
-    node_a_id : number;
-    node_b_id : number;
+    source_node_id : number;
+    target_node_id : number;
  }
 
 export const EdgeParamsCodec = Codec.interface({
