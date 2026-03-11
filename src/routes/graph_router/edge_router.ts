@@ -1,7 +1,7 @@
 import Router from 'koa-router'
 import * as edge_controller from '../../controllers/edge_controller'
 import { validateParams } from '../../middleware/validation'
-import { EdgeParamsCodec } from '../../models/edge_model'
+import { EdgeParamsCodec } from '../../dto/edge_dto'
 import { parseNumberParams } from '../../middleware/parse_number_params'
 
 const edgeRouter = new Router()

@@ -1,5 +1,5 @@
 import { db } from '../db/database'
-import { Node } from '../models/node_model';
+import { Node } from '../domain/node_model';
 import {NODE_ID_TYPE} from '../utils/graph_typs'
 import { DBConstants } from '../db/db_configs'
 

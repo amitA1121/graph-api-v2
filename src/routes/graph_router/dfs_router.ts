@@ -1,7 +1,7 @@
 import Router from 'koa-router'
 import * as dfs_controller from '../../controllers/dfs_query_controller'
 import { validateParams } from '../../middleware/validation'
-import { PathParamsCodec } from '../../models/dfs_model'
+import { PathParamsCodec } from '../../dto/dfs_dto'
 import { parseNumberParams } from '../../middleware/parse_number_params'
 
 

@@ -1,7 +1,7 @@
 import Router from 'koa-router'
 import * as node_controller from '../../controllers/node_controller'
 import { validateParams } from '../../middleware/validation'
-import { NodeParamsCodec } from '../../models/node_model'
+import { NodeParamsCodec } from '../../dto/node_dto'
 import { parseNumberParams } from '../../middleware/parse_number_params'
 
 const nodeRouter = new Router()
