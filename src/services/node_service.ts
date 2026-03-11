@@ -11,8 +11,7 @@ export const createNode = async () => {
     return nodeRepo.createNode()
 }
 
-export const deleteNode = async (node_id: NODE_ID_TYPE) => {
-    helpert_logics.assertNodeExist(node_id)
-    
-    nodeRepo.deleteNode(node_id)
+export const deleteNode = async (node_id: NODE_ID_TYPE): Promise<void> => {
+    await helpert_logics.assertNodeExist(node_id)
+    await nodeRepo.deleteNode(node_id)
 }
