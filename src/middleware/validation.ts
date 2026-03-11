@@ -12,7 +12,7 @@ export const validateParams = <T>(codec: Codec<T>) => {
                 ctx.body = {error: err}
             },
             Right: async(data) => {
-                ctx.state.validateParams = data
+                ctx.state.validatedParams = data
                 await next()
             }
         })

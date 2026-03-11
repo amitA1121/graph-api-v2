@@ -1,4 +1,8 @@
+import { NODE_ID_TYPE } from '../utils/graph_typs'
 import { buildAdjacencyList } from './edge_service'
+import { assertNodeExist } from './helpers/helpert_logics'
+
+type AdjacencyList = Map<NODE_ID_TYPE, NODE_ID_TYPE[]>
 
 export const getDegrees = async () => {
     const adjacencyList = await buildAdjacencyList()
@@ -10,11 +14,12 @@ export const getDegrees = async () => {
 }
 
 export const getAllConnectedComponents = async () => {
+    
     const adjacencyList = await buildAdjacencyList()
-    const components: number[][] = []
-    const visitedNodes = new Set<number>()
+    const components: NODE_ID_TYPE[][] = []
+    const visitedNodes = new Set<NODE_ID_TYPE>()
 
-    const dfsExplore = (node_id: number, component: number[]) => {
+    const dfsExplore = (node_id: NODE_ID_TYPE, component: NODE_ID_TYPE[]) => {
         visitedNodes.add(node_id)
         component.push(node_id)
         for (const neighbor of adjacencyList.get(node_id)!) {
@@ -26,7 +31,7 @@ export const getAllConnectedComponents = async () => {
 
     for(const node_id of adjacencyList.keys()) {
         if(!visitedNodes.has(node_id)) {
-            const component: number[] = []
+            const component: NODE_ID_TYPE[] = []
             dfsExplore(node_id, component)
             components.push(component)
         }
@@ -34,14 +39,18 @@ export const getAllConnectedComponents = async () => {
     return components
 }
 
-export const getAllPathsFromTwoNodes = async (start_node: number, end_node: number ) => {
-    const adjacencyList = await buildAdjacencyList()
-    const allPaths: number[][] = []
-    const path: number[] = [start_node]
-    const visitedNodes = new Set<number>([start_node])
+export const getAllPathsFromTwoNodes = async (source_node_id: NODE_ID_TYPE, target_node_id: NODE_ID_TYPE ) => {
 
-    const dfs = (current_node: number) => {
-        if(current_node === end_node) {
+    await assertNodeExist(source_node_id)
+    await assertNodeExist(target_node_id)
+    
+    const adjacencyList = await buildAdjacencyList()
+    const allPaths: NODE_ID_TYPE[][] = []
+    const path: NODE_ID_TYPE[] = [source_node_id]
+    const visitedNodes = new Set<NODE_ID_TYPE>([source_node_id])
+
+    const dfs = (current_node: NODE_ID_TYPE) => {
+        if(current_node === target_node_id) {
             allPaths.push([...path])
             return
         }
@@ -58,15 +67,15 @@ export const getAllPathsFromTwoNodes = async (start_node: number, end_node: numb
             }
         }       
     }
-    dfs(start_node)
+    dfs(source_node_id)
     return allPaths
 }
 
 export const hasCycle = async (): Promise<boolean> => {
     const adjacencyList = await buildAdjacencyList()
-    const visited = new Set<number>()
+    const visited = new Set<NODE_ID_TYPE>()
 
-    const dfs = (current: number, parent: number): boolean => {
+    const dfs = (current: NODE_ID_TYPE, parent: NODE_ID_TYPE): boolean => {
         visited.add(current)
 
         for (const neighbor of adjacencyList.get(current)!) {

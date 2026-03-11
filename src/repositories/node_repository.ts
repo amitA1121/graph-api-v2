@@ -18,5 +18,5 @@ export const createNode = async (): Promise<Node> => {
 }
 
 export const deleteNode = async (id: NODE_ID_TYPE): Promise<void> => {
-    await db(DBConstants.TABLES.NODES).where({id}).delete()
-} 
+    await db(DBConstants.TABLES.NODES).where({ id }).delete()
+}

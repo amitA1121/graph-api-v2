@@ -1,20 +1,25 @@
 import { Context } from 'koa'
-import * as graphServies from '../services/node_service'
+import * as graphServcies from '../services/node_service'
 import { statusCode } from '../utils/statusCode'
 
+type ParsedNodeParams = {
+  id: number
+}
 
 export const getAllNodes = async (ctx: Context) => {
-  ctx.body = await graphServies.getAllNodes()
+  ctx.body = await graphServcies.getAllNodes()
 }
 
 export const createNode = async (ctx: Context) => {
-  ctx.body = await graphServies.createNode()
+  const node = await graphServcies.createNode()
+
   ctx.status = statusCode.CREATE
+  ctx.body = node
 }
 
 export const deleteNode = async (ctx: Context) => {
-  const { id } = ctx.state.validatedParams as { id: number}
+  const { id } = ctx.state.validatedParams as ParsedNodeParams
   
-  await graphServies.deleteNode(id)
+  await graphServcies.deleteNode(id)
   ctx.status = statusCode.NO_CONTENT
 }

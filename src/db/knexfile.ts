@@ -1,4 +1,4 @@
-import * as KNEX from './src/db/knexConfig'
+import * as KNEX from './knexConfig'
 import { Knex } from 'knex'
 
 const config: Knex.Config = {

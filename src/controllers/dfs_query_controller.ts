@@ -1,23 +1,24 @@
 import { Context } from 'koa'
-import * as dfs_service from '../services/dfs_service'
+import * as dfsService from '../services/dfs_service'
 
+type ParsedPathParams = {
+    start: number,
+    end: number
+}
 export const getAllConnectedComponents = async (ctx: Context) => {
-    ctx.body = await dfs_service.getAllConnectedComponents()
+    ctx.body = await dfsService.getAllConnectedComponents()
 }
 
 export const hasCycle = async (ctx: Context) => {
-    ctx.body = await dfs_service.hasCycle()
+    ctx.body = await dfsService.hasCycle()
 }
 
 export const getDegrees = async (ctx: Context) => {
-    ctx.body = await dfs_service.getDegrees()
+    ctx.body = await dfsService.getDegrees()
 }
 
 export const getAllPathsFromTwoNodes = async (ctx: Context) => {
-    const {start, end } = ctx.state.validatedParams as {
-        start: number,
-        end: number
-    }
+    const { start, end } = ctx.state.validatedParams as ParsedPathParams
 
-    ctx.body = await dfs_service.getAllPathsFromTwoNodes(start, end)
+    ctx.body = await dfsService.getAllPathsFromTwoNodes(start, end)
 }

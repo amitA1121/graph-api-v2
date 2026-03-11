@@ -4,6 +4,7 @@ import { statusCode } from '../utils/statusCode'
 export const parseNumberParams = (paramsNames: string[]) => {
     return async (ctx: Context, next: Next) => {
         const validatedParams = ctx.state.validatedParams as Record<string, unknown>
+        
         const parsedParams: Record<string, number> = {}
 
         for (const paramsName of paramsNames) {
