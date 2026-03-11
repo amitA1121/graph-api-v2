@@ -24,9 +24,9 @@ export const getAllEdges = async () => {
     return edgeRepo.getAllEdges()
 }
 
-export const getNeighborsOfNode = async (id: NODE_ID_TYPE) => {
-    await helpert_logics.assertNodeExist(id)
-    return edgeRepo.getNeighborsOfNode(id)
+export const getNeighborsOfNode = async (node_id: NODE_ID_TYPE) => {
+    await helpert_logics.assertNodeExist(node_id)
+    return edgeRepo.getNeighborsOfNode(node_id)
 }
 
 export const buildAdjacencyList = async (): Promise<AdjacencyList> => {
@@ -35,7 +35,7 @@ export const buildAdjacencyList = async (): Promise<AdjacencyList> => {
     const adjacencyList: AdjacencyList = new Map()
 
     for(const node of nodes) 
-        adjacencyList.set(node.id, [])
+        adjacencyList.set(node.node_id, [])
     for(const edge of edges) {
         adjacencyList.get(edge.source_node_id)!.push(edge.target_node_id)
         adjacencyList.get(edge.target_node_id)!.push(edge.source_node_id)

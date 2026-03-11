@@ -1,9 +1,9 @@
 import {Codec, number, GetType} from 'purify-ts'
 
 export interface Node {
-    id : number;
+    node_id : number;
 }
 
 export const NodeParamsCodec = Codec.interface({
-    id : number
+    node_id : number
 })

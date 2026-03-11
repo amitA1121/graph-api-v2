@@ -8,8 +8,8 @@ export const getAllNodes = async (): Promise<Node[]> => {
     return db<Node>(DBConstants.TABLES.NODES).select('*')
 }
 
-export const getNodeById = async (id: NODE_ID_TYPE): Promise<Node | undefined> => {
-    return db<Node>(DBConstants.TABLES.NODES).where({id}).first()
+export const getNodeById = async (node_id: NODE_ID_TYPE): Promise<Node | undefined> => {
+    return db<Node>(DBConstants.TABLES.NODES).where({ node_id }).first()
 }
 
 export const createNode = async (): Promise<Node> => {
@@ -17,6 +17,6 @@ export const createNode = async (): Promise<Node> => {
     return newNode
 }
 
-export const deleteNode = async (id: NODE_ID_TYPE): Promise<void> => {
-    await db(DBConstants.TABLES.NODES).where({ id }).delete()
+export const deleteNode = async (node_id: NODE_ID_TYPE): Promise<void> => {
+    await db(DBConstants.TABLES.NODES).where({ node_id }).delete()
 }

@@ -75,12 +75,12 @@ export const hasCycle = async (): Promise<boolean> => {
     const adjacencyList = await buildAdjacencyList()
     const visited = new Set<NODE_ID_TYPE>()
 
-    const dfs = (current: NODE_ID_TYPE, parent: NODE_ID_TYPE): boolean => {
-        visited.add(current)
+    const dfs = (current_node: NODE_ID_TYPE, parent: NODE_ID_TYPE): boolean => {
+        visited.add(current_node)
 
-        for (const neighbor of adjacencyList.get(current)!) {
+        for (const neighbor of adjacencyList.get(current_node)!) {
             if (!visited.has(neighbor)) {
-                if (dfs(neighbor, current)) return true
+                if (dfs(neighbor, current_node)) return true
             } else if (neighbor !== parent) {
                 return true
             }

@@ -3,7 +3,7 @@ import * as graphServcies from '../services/node_service'
 import { statusCode } from '../utils/statusCode'
 
 type ParsedNodeParams = {
-  id: number
+  node_id: number
 }
 
 export const getAllNodes = async (ctx: Context) => {
@@ -18,8 +18,8 @@ export const createNode = async (ctx: Context) => {
 }
 
 export const deleteNode = async (ctx: Context) => {
-  const { id } = ctx.state.validatedParams as ParsedNodeParams
+  const { node_id } = ctx.state.validatedParams as ParsedNodeParams
   
-  await graphServcies.deleteNode(id)
+  await graphServcies.deleteNode(node_id)
   ctx.status = statusCode.NO_CONTENT
 }

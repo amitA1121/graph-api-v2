@@ -3,19 +3,19 @@ import { DBConstants } from "../db_configs";
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(DBConstants.TABLES.NODES, (table) => {
-    table.increments("id").primary()
+    table.increments("node_id").primary()
   })
 
   await knex.schema.createTable(DBConstants.TABLES.EDGES, (table) => {
     table.integer(DBConstants.COLUMNS.SOURCE_NODE_ID)
       .notNullable()
-      .references("id")
+      .references("node_id")
       .inTable(DBConstants.TABLES.NODES)
       .onDelete("CASCADE")
 
     table.integer(DBConstants.COLUMNS.TARGET_NODE_ID)
       .notNullable()
-      .references("id")
+      .references("node_id")
       .inTable(DBConstants.TABLES.NODES)
       .onDelete("CASCADE")
 
