@@ -4,7 +4,7 @@
 A REST API for managing graphs with nodes and edges.
 I built it while using: Koa.js, TypeScript, and PostgreSQL - Knex, Codec
 
-# Setup if you wnat to run the project:
+# Setup if you want to run the project:
 1. Install dependencies: `npm install`
 
 2. Database Setup:
