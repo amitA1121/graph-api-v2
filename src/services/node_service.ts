@@ -2,7 +2,7 @@ import * as nodeRepo from '../repositories/node_repository'
 import { NODE_ID_TYPE } from '../utils/graph_typs'
 import * as helpert_logics from '../services/helpers/helpert_logics'
 
-
+//FIX: its good practice to explicitly type the return type
 export const getAllNodes = async () => {
     return nodeRepo.getAllNodes()
 }

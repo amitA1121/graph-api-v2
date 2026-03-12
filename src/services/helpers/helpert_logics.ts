@@ -4,6 +4,8 @@ import * as edgeRepo from  '../../repositories/edge_repository'
 import { AppError } from '../../middleware/errorHandler';
 import { statusCode } from '../../utils/statusCode';
 
+//FIX: Domain logic!
+
 export const assertNodeExist = async (id: NODE_ID_TYPE): Promise<void> => {
     const isNodeExist = await nodeRepo.getNodeById(id)
 

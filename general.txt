@@ -1,0 +1,9 @@
+1. Please read on Domain Driven Design and re-think your code in these terms.
+2. there are comments from last time that stated unattended. I ASSUME you did not intentionally skip these. But next time is not going to slide that easy!
+3. overall nice work. Please make sure you:
+    - dont over abstract (you had a little bit of this)
+    - dont under abstract (you had A LOT of this! USE DOMAINS!)
+4. I do not want DDD (Domain Driven Design) Per-Se, meaning, DO NOT refactor your code to exactly 'match' the DDD scheme, I just want you to have 'runtime universe' as Domain, and 'DB-universe' as Entity. Mapping needs to go to respective 'universe' files (domain->DB in domain, and vice versa)
+5. Please DO NOT open a new branch like you did this time. What to do now (and a good git excersize):
+    - merge this branch with all my comments with the branch 'CR-thread' (good luck)
+    - work from 'CR-thread'

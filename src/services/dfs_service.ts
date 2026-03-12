@@ -2,6 +2,7 @@ import { NODE_ID_TYPE } from '../utils/graph_typs'
 import { buildAdjacencyList } from './edge_service'
 import { assertNodeExist } from './helpers/helpert_logics'
 
+//FIX: NOT USED!! + WRONG LOCATION! THIS IS DOMAIN!
 type AdjacencyList = Map<NODE_ID_TYPE, NODE_ID_TYPE[]>
 
 export const getDegrees = async () => {
