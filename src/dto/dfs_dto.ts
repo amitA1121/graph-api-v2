@@ -1,4 +1,4 @@
-import {Codec, string, GetType} from 'purify-ts'
+import {Codec, string} from 'purify-ts'
 
 export const PathParamsCodec = Codec.interface({
     start : string,

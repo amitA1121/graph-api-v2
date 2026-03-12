@@ -1,43 +1,26 @@
 import { Context } from 'koa'
-import * as dfs_service from '../services/dfs_service'
-import { PathParamsCodec } from '../models/dfs_model'
-import { statusCode } from '../utils/statusCode'
+import * as dfsService from '../services/dfs_service'
 
+type ParsedPathParams = {
+    start: number,
+    end: number
+}
+
+//FIX: statuses all across
 export const getAllConnectedComponents = async (ctx: Context) => {
-    ctx.status = statusCode.OK
-    ctx.body = await dfs_service.getAllConnectedComponents()
+    ctx.body = await dfsService.getAllConnectedComponents()
 }
 
 export const hasCycle = async (ctx: Context) => {
-    ctx.status = statusCode.OK
-    ctx.body = await dfs_service.hasCycle()
+    ctx.body = await dfsService.hasCycle()
 }
 
 export const getDegrees = async (ctx: Context) => {
-    ctx.status = statusCode.OK
-    ctx.body = await dfs_service.getDegrees()
+    ctx.body = await dfsService.getDegrees()
 }
 
 export const getAllPathsFromTwoNodes = async (ctx: Context) => {
-    const result = PathParamsCodec.decode(ctx.params)
+    const { start, end } = ctx.state.validatedParams as ParsedPathParams
 
-    return result.caseOf({
-        Left: (err) => {
-            ctx.status = statusCode.BAD_REQUEST
-            ctx.body = { error: err }
-        },
-        Right: async (data) => {
-            const start = Number(data.start)
-            const end = Number(data.end)
-
-            if (Number.isNaN(start) || Number.isNaN(end)) {
-                ctx.status = statusCode.BAD_REQUEST
-                ctx.body = { error: 'start and end must be type of number' };
-                return
-            }
-
-            ctx.status = statusCode.OK
-            ctx.body = await dfs_service.getAllPathsFromTwoNodes(start, end)
-        },
-    })
+    ctx.body = await dfsService.getAllPathsFromTwoNodes(start, end)
 }

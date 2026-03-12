@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "es2024",
     "module": "commonjs",
-    "lib": ["ES2020"],
+    "lib": ["ES2024"],
     "outDir": "./dist",
     "rootDir": ".",
     "strict": true,
@@ -10,6 +10,6 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*", "knexfile.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

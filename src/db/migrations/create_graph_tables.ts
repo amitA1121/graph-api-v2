@@ -1,23 +1,36 @@
 import { Knex } from 'knex';
-import { NODE_TABLE_NAME, EDGE_TABLE_NAME, COLUMN_NAMES_a, COLUMN_NAMES_b} from "../db_configs";
+import { DBConstants } from "../db_configs";
 
-
+//FIX: if anything here should be an external variable, it is "node_id", which is the only thing that isnt. It MAY need an external variable only because it is repeted. 
+// as for the rest - they are completely FINE left as free strings, ESPECIALLY those you use only once (columns). SQL is inherently stringly typed, no need to fight it! This is a good example of redundant abstraction.
 export async function up(knex: Knex): Promise<void> {
-  await knex.schema.createTable(NODE_TABLE_NAME, (table) => {
-    table.increments("id").primary();
-  });
+  await knex.schema.createTable(DBConstants.TABLES.NODES, (table) => {
+    table.increments("node_id").primary()
+  })
 
-  await knex.schema.createTable(EDGE_TABLE_NAME, (table) => {
-    table.integer(COLUMN_NAMES_a).notNullable().references("id").inTable(NODE_TABLE_NAME).onDelete("CASCADE");
-    table.integer(COLUMN_NAMES_b).notNullable().references("id").inTable(NODE_TABLE_NAME).onDelete("CASCADE");
-    
-    table.check(`${COLUMN_NAMES_a} < ${COLUMN_NAMES_b}`);
-   
-    table.primary([COLUMN_NAMES_a, COLUMN_NAMES_b]);
-  });
+  await knex.schema.createTable(DBConstants.TABLES.EDGES, (table) => {
+    table.integer(DBConstants.COLUMNS.SOURCE_NODE_ID)
+      .notNullable()
+      .references("node_id")
+      .inTable(DBConstants.TABLES.NODES)
+      .onDelete("CASCADE")
+
+    table.integer(DBConstants.COLUMNS.TARGET_NODE_ID)
+      .notNullable()
+      .references("node_id")
+      .inTable(DBConstants.TABLES.NODES)
+      .onDelete("CASCADE")
+
+    table.check(`${DBConstants.COLUMNS.SOURCE_NODE_ID} < ${DBConstants.COLUMNS.TARGET_NODE_ID}`)
+
+    table.primary([
+      DBConstants.COLUMNS.SOURCE_NODE_ID,
+      DBConstants.COLUMNS.TARGET_NODE_ID
+    ])
+  })
 }
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.schema.dropTableIfExists(EDGE_TABLE_NAME);
-  await knex.schema.dropTableIfExists(NODE_TABLE_NAME);
+  await knex.schema.dropTableIfExists(DBConstants.TABLES.EDGES)
+  await knex.schema.dropTableIfExists(DBConstants.TABLES.NODES)
 }

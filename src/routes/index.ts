@@ -1,20 +1,12 @@
 import Router from 'koa-router'
-import * as graph_controller from '../controllers/graph_controller'
-import * as dfs_controller from '../controllers/dfs_query_controller'
+import nodeRouter from './graph_router/node_router'
+import edgeRouter from './graph_router/edge_router'
+import dfsRouter from './graph_router/dfs_router'
 
 const router = new Router()
 
-router.get('/nodes', graph_controller.getAllNodes)
-router.post('/nodes', graph_controller.createNode)
-router.delete('/nodes/:id', graph_controller.deleteNode)
-
-router.get('/edges', graph_controller.getAllEdges)
-router.post('/edges/:node_a_id/:node_b_id', graph_controller.createEdge)
-router.delete('/edges/:node_a_id/:node_b_id', graph_controller.deleteEdge)
-
-router.get('/components', dfs_controller.getAllConnectedComponents)
-router.get('/cycle', dfs_controller.hasCycle)
-router.get('/degree', dfs_controller.getDegrees)
-router.get('/path/:start/:end', dfs_controller.getAllPathsFromTwoNodes)
+router.use(nodeRouter.routes(), nodeRouter.allowedMethods())
+router.use(edgeRouter.routes(), edgeRouter.allowedMethods())
+router.use(dfsRouter.routes(), dfsRouter.allowedMethods())
 
 export default router

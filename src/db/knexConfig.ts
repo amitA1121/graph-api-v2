@@ -1,8 +1,12 @@
-export const PASSWORD = '123456';
-export const DATABASE_NAME = 'graph_db_1';
-export const USER_NAME = 'postgres';
-export const PORT_NUMBER = 5432;
-export const HOST = 'localhost';
-export const CLIENT = 'pg';
-export const DIRECTORY = './src/db/migrations';
-export const EXTENSION = 'ts';
+import dotenv from "dotenv";
+
+dotenv.config();
+
+export const CLIENT = process.env.DB_CLIENT;
+export const HOST = process.env.DB_HOST;
+export const PORT_NUMBER = Number(process.env.DB_PORT)
+export const USER_NAME = process.env.DB_USER;
+export const PASSWORD = process.env.DB_PASS;
+export const DATABASE_NAME = process.env.DB_NAME;
+export const DIRECTORY = process.env.DB_MIGRATIONS_DIR;
+export const EXTENSION = process.env.DB_MIGRATIONS_EXT;
