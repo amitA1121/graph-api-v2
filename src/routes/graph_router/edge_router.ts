@@ -6,6 +6,10 @@ import { parseNumberParams } from '../../middleware/parse_number_params'
 
 const edgeRouter = new Router()
 
+//FIX: 
+// 1. no, this is Domain! 
+// 2. this is bad design, what guarentees these free string keys exist where you want them? HINT: how do I extract the keys of an type in typescript? 
+// 3. is this a good name for what this does?
 const edge = ['source_node_id', 'target_node_id']
 
 edgeRouter.get('/edges', edge_controller.getAllEdges)

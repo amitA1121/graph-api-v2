@@ -12,6 +12,7 @@ export const validateParams = <T>(codec: Codec<T>) => {
                 ctx.body = {error: err}
             },
             Right: async(data) => {
+                //FIX: why duplicate the params inside ctx.state.validateedParams when they are already in ctx.params?
                 ctx.state.validatedParams = data
                 await next()
             }

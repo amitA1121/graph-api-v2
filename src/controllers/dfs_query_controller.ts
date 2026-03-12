@@ -5,6 +5,8 @@ type ParsedPathParams = {
     start: number,
     end: number
 }
+
+//FIX: statuses all across
 export const getAllConnectedComponents = async (ctx: Context) => {
     ctx.body = await dfsService.getAllConnectedComponents()
 }

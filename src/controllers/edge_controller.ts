@@ -7,6 +7,7 @@ type ParsedEdgeParams = {
     target_node_id: number
 }
 
+//FIX: status
 export const getAllEdges = async (ctx: Context) => {
     ctx.body = await graphServices.getAllEdges()
 }

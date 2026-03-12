@@ -1,6 +1,8 @@
 import { Context, Next } from 'koa'
 import { statusCode } from '../utils/statusCode'
 
+
+//FIX: notice - nothing enforces 'type' and 'statusCode' match. You'd want a mechanism to enforce this. What's the cleanest way?
 export class AppError extends Error {
     statusCode: number
     type: string
@@ -17,6 +19,7 @@ export const errorHandler = async (ctx: Context, next: Next) => {
         await next()
     }
     catch (err) {
+        //FIX: still funny indentation lol
         console.error(err)
         if (err instanceof AppError) {
             ctx.status = err.statusCode

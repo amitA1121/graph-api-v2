@@ -1,6 +1,8 @@
 import { Context, Next } from 'koa'
 import { statusCode } from '../utils/statusCode'
 
+
+//FIX: you do not need this AT ALL. Why? notice the usage of this is to validate strings. Are node ids and edge ids strings?
 export const parseNumberParams = (paramsNames: string[]) => {
     return async (ctx: Context, next: Next) => {
         const validatedParams = ctx.state.validatedParams as Record<string, unknown>

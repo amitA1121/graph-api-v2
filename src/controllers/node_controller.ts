@@ -6,6 +6,8 @@ type ParsedNodeParams = {
   node_id: number
 }
 
+
+//FIX: status
 export const getAllNodes = async (ctx: Context) => {
   ctx.body = await graphServcies.getAllNodes()
 }
