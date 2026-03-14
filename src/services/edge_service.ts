@@ -27,12 +27,6 @@ export const getAllEdges = async () => {
     return edgeRepo.getAllEdges()
 }
 
-//FIX: who uses this?
-export const getNeighborsOfNode = async (node_id: NODE_ID_TYPE) => {
-    await helpert_logics.assertNodeExist(node_id)
-    return edgeRepo.getNeighborsOfNode(node_id)
-}
-
 export const buildAdjacencyList = async (): Promise<AdjacencyList> => {
     const nodes = await nodeRepo.getAllNodes()
     const edges = await edgeRepo.getAllEdges()
