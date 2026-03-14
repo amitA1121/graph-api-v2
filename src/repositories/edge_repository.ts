@@ -39,14 +39,3 @@ export const deleteEdge = async (firstNodeId: NODE_ID_TYPE, secondNodeId: NODE_I
     const orderedEdge = toOrderedEdge(firstNodeId, secondNodeId)
     await db(DBConstants.TABLES.EDGES).where(orderedEdge).delete()
 }
-
-//FIX: who uses this?
-export const getNeighborsOfNode = async (id: NODE_ID_TYPE): Promise<NODE_ID_TYPE[]> => {
-    const edges = await db<OrderedEdge>(DBConstants.TABLES.EDGES)
-    .where(DBConstants.COLUMNS.SOURCE_NODE_ID, id)
-    .orWhere(DBConstants.COLUMNS.TARGET_NODE_ID, id)
-    
-    return edges.map(edge => 
-        edge.source_node_id === id ? edge.target_node_id : edge.source_node_id
-    )
-}
